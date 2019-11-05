@@ -36,11 +36,7 @@ public class UserController {
         return "register";
     }
 
-//    @RequestMapping(value = "/editProfile", method = RequestMethod.GET)
-//    public String profile() {
-//
-//        return "editProfile1";
-//    }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerPagePOST(@ModelAttribute(value = "user") User user, BindingResult binding) {
         if (binding.hasErrors()) {
@@ -56,12 +52,6 @@ public class UserController {
         m.addAttribute("user", dao.findByLogin(principal.getName()));//zwrócenie nazwy widoku profilu użytkownika-profile.html
         return "profile";
     }
-
-//    @RequestMapping(value = "/users", method = RequestMethod.GET)
-//    public String profilePage(Model m) {//dodanie do modelu listy wszystkich użytkowników
-//        m.addAttribute("userlist", dao.findAll());//zwrócenie nazwy widoku wyświetlającego wszystkich użytkowników
-//        return "users";
-//    }
 
     @GetMapping("/delete")
     public String deleteUser(@RequestParam String userLogin, Principal principal) {
@@ -84,89 +74,5 @@ public class UserController {
             }
         }
     }
-
-//    @RequestMapping(value = "/editProfile",method = RequestMethod.GET)
-//    public String editPage(Model m) {
-//
-//        return "editProfile";
-//    }
-//    @RequestMapping(value = "/editProfile", method = RequestMethod.POST)
-//    public String editPagePOST(@ModelAttribute(value = "user") User user) {
-//
-//       // user.setPassword(passwordEncoder.encode(user.getPassword()));
-//       // dao.save(user);//przekierowanie do adresu url: /login
-//        return "redirect:/profile";
-//    }
-
-
-//    @RequestMapping(value = "/editProfile", method = RequestMethod.POST)
-//    public String editPage(@ModelAttribute(value = "user") User user) {//zwrócenie nazwy widoku logowania-login.html
-//        return "editProfile";
-//    }
-    //   @RequestMapping(value = "/editProfile", method = RequestMethod.POST)
-//    public String editProfile(@ModelAttribute(value = "user") User user) {
-//
-//        //dao.save(user);
-//
-//       return "editProfile";
-//    }
-//    @RequestMapping(value = "/editProfile", method = RequestMethod.GET)
-//    public String editProfile(Model m) {//dodanie do modelu nowego użytkownika
-//        m.addAttribute("user", new User());//zwrócenie nazwy widoku rejestracji-register.html
-//        return "editProfile";
-//    }
-//
-//    @RequestMapping(value = "/editProfile", method = RequestMethod.POST)
-//    public String editProfilePOST(@ModelAttribute(value = "user") User user) {
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        dao.save(user);//przekierowanie do adresu url: /login
-//        return "profile";
-//    }
-//    @RequestMapping(value = "/editProfile", method = RequestMethod.GET)
-//    public String editProfilePOST(@ModelAttribute(value = "user1") User user, Principal principal) {
-//        Integer toEdit = dao.findByLogin(principal.getName()).getUserid();
-//        //  if (principal.getName().equals(userLogin)) { // zalogowany chce usunąć siebie
-//        User id = dao.findById(toEdit).get();
-//        id.setName(user.getName());
-//        id.setSurname(user.getSurname());
-//        id.setCity(user.getCity());
-//        id.setCode(user.getCode());
-//        dao.save(id);
-//
-//        return "redirect:/profile";
-//        //  } else return "redirect:/error";
-//    }
-
-//    @RequestMapping(value = "/editProfile", method = RequestMethod.GET)
-//    public String editProfilePOST(@ModelAttribute(value = "user1") User user, Principal principal) {
-//        // Integer toEdit = dao.findByLogin(principal.getName()).getUserid(); //id zalogowanego
-//        //  if (principal.getName().equals(userLogin)) { // zalogowany chce usunąć siebie
-//        //user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        User id = dao.findByLogin(principal.getName());
-//        //User toEdit = dao.findByUserid().get();
-//        // User edit = dao.findById(toEdit).get();
-//        id.setName(user.getName());
-//        id.setSurname(user.getSurname());
-//        id.setCity(user.getCity());
-//        id.setCode(user.getCode());
-//        dao.save(id);
-//
-//        return "redirect:/profile";
-//        //  } else return "redirect:/error";
-//    }
-
-//    @RequestMapping(value = "/register", method = RequestMethod.POST)
-//    public String editProfilePOST(@ModelAttribute(value = "user1") User user,Principal principal, Model m,  BindingResult binding) {
-//        if (binding.hasErrors()) {
-//            return "register"; // powrót do formularza
-//        }
-//        User edit =  dao.findByLogin(principal.getName());
-//        m.addAttribute("edit",)
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        dao.save(user);//przekierowanie do adresu url: /login
-//        return "redirect:/login";
-//    }
-
-
 }
 
