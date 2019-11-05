@@ -29,18 +29,18 @@ public class ProductController {
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public String productsPage(Model m) {//dodanie do modelu listy wszystkich użytkowników
-        m.addAttribute("productlist", dao.findAll());//zwrócenie nazwy widoku wyświetlającego wszystkich użytkowników
+        m.addAttribute("productlist", dao.findAll());//zwrócenie nazwy widoku wyświetlającego wszystkie produkty
         return "products";
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String productsIndex(Model m) {//dodanie do modelu listy wszystkich użytkowników
-        m.addAttribute("productlist", dao.findAll());//zwrócenie nazwy widoku wyświetlającego wszystkich użytkowników
+    public String productsIndex(Model m) {
+        m.addAttribute("productlist", dao.findAll());
         return "index";
     }
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String productsMain(Model m) {//dodanie do modelu listy wszystkich użytkowników
-        m.addAttribute("productlist", dao.findAll());//zwrócenie nazwy widoku wyświetlającego wszystkich użytkowników
+    public String productsMain(Model m) {
+        m.addAttribute("productlist", dao.findAll());
         return "index";
     }
 
