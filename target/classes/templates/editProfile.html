@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="layout :: head"></head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<br><br>
+<img src="../images/banner.jpg" alt="Responsive image" width="100%">
+<div class="container" style="text-align: center">
+    <br><br>
+    <h1>Edycja profilu:</h1><br>
+     <form th:action="@{'/editProfile?id='5}"method="POST" th:object="${user}">
+    <table align="center">
+
+        <tr><td>Imię:</td>  <td><input type="text" th:field="*{name}"placeholder="Imię"/></td></tr>
+        <tr><td>Nazwisko:</td>  <td> <input type="text" th:field="*{surname}"placeholder="Nazwisko"/></td></tr>
+      <!--  <tr><td>Login: </td>  <td> <input type="text" th:field="*{login}"placeholder="Login"/></td></tr>-->
+        <tr><td> Miasto:</td>  <td> <input type="text" th:field="*{city}"placeholder="Miasto"/></td></tr>
+        <tr><td>  Kod pocztowy:</td>  <td> <input type="text" th:field="*{code}"placeholder="Kod pocztowy"/></td></tr>
+       <!--  <tr><td> E-mail:</td>  <td> <input type="text" th:field="*{mail}"placeholder="E-mail"/></td></tr>
+        <tr><td> Hasło:</td>  <td> <input type="password" th:field="*{password}"placeholder="Hasło"/></td></tr>-->
+    </table>
+    <br>
+           <!--<input type="hidden" th:value="${user.login}" th:name="userLogin"/>-->
+            <input type="submit">Zapisz</input><br>
+    </form>
+     <br><br>
+ </div>
+ <div th:include="layout :: footer"></div>
+ </body>
+ </html>
+

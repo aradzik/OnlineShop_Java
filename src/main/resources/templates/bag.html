@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:include="layout :: head"></head>
+<style>
+    .btn-link {
+        border: none;
+        outline: none;
+        background: none;
+        cursor: pointer;
+        color: #0000EE;
+        padding: 0;
+        text-decoration: underline;
+        font-family: inherit;
+        font-size: inherit;
+    }
+</style>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<br><br>
+<img src="../images/banner.jpg" alt="Responsive image" width="100%">
+<div class="container">
+    <div sec:authorize="isAuthenticated()">
+    <br><br>
+    <div><h1>Koszyk</h1></div>
+    <br>
+
+        <div th:if="${#lists.isEmpty(baglist)}">Brak produktów w koszyku.</div>
+
+        <table th:if="${!#lists.isEmpty(baglist)}">
+
+            <tr th:each="bag: ${baglist}">
+
+                <div th:each="product: ${productlist}">
+                    <div th:if="${product.productid == bag.productid}">
+
+                        <th><img th:src="@{'../images/'+${product.pictures}+'.jpg'}" width="200" height="200"></th>
+                        <th>Produkt:  <a th:text="${product.namep}"></a></th>
+                        <th>Cena:  <a th:text="${product.price}"></a> zł</th>
+                    </div>
+                </div>
+
+                    <th>
+                        <form action="#" th:action="@{/delete1}" method="get">
+                            <input type="hidden" th:value="${bag.prodbagid}" th:name="delProduct"/>
+                            <input type="submit" value="Usuń"/>
+                        </form>
+                    </th>
+
+
+
+            </tr>
+
+        </table>
+    </div>
+</div>
+<div sec:authorize="!isAuthenticated()">
+    <h2>Musisz się zalogować</h2>
+</div>
+<div th:include="layout :: footer"></div>
+</body>
+</html>

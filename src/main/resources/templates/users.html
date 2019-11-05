@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="layout :: head"></head>
+<style>
+    .btn-link {
+        border: none;
+        outline: none;
+        background: none;
+        cursor: pointer;
+        color: #0000EE;
+        padding: 0;
+        text-decoration: underline;
+        font-family: inherit;
+        font-size: inherit;
+    }
+</style>
+<body><div th:include="layout :: navigationPanel"></div>
+<br><br><br><br>
+<img src="../images/banner.jpg" alt="Responsive image" width="100%">
+<div><h1>Lista użytkowników:</h1></div>
+
+
+<div th:if="${#lists.isEmpty(userlist)}">Brak użytkowników  w bazie danych...</div>
+
+<table th:if="${!#lists.isEmpty(userlist)}">
+    <thead>
+    <tr>
+        <th>UserID</th>
+        <th>Imie</th>
+        <th>Nazwisko</th>
+        <th>Login</th>
+        <th>Zaszyfrowane hasło</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${userlist}">
+        <td th:text="${user.userid}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.login}"></td>
+        <td th:text="${user.password}"></td>
+        <td>
+            <form action="#" th:action="@{/delete}" method="get">
+                <input type="hidden" th:value="${user.login}" th:name="userLogin"/>
+                <input type="submit" value="Usuń konto" class="btn-link"/>
+            </form>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<div th:include="layout :: footer"></div>
+</body>
+</html>

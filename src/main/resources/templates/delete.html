@@ -1,0 +1,17 @@
+<!--  -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:include="layout :: head">
+</head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<br><br><br><br>
+<img src="../images/banner.jpg" alt="Responsive image" width="100%">
+<h1 th:text="'Możesz usunąć tylko swoje konto!'"></h1>
+<a sec:authorize="!isAuthenticated()">
+    <a th:href="@{/users}">Wróć</a>
+</a>
+<div th:include="layout :: footer"></div>
+</body>
+</html>

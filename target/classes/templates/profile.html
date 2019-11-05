@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="layout :: head"></head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<img src="../images/banner.jpg" alt="Responsive image" width="100%">
+<br><br><br><br><br>
+    <div class="container">
+        <h1 th:text="'Witaj ' +${user.name} + ' ' + ${user.surname}"></h1>
+        <h2>Dane profilu: </h2><br>
+
+
+<table>
+        <tr><td>Imię:</td>  <td th:text="${user.name}"></td></tr>
+        <tr><td>Nazwisko:</td><td th:text="${user.surname}"></td></tr>
+        <tr><td>Login:</td><td th:text="${user.login}"></td></tr>
+        <tr><td>Hasło: </td><td th:text="${user.password}"></td></tr>
+        <tr><td>Miasto: </td><td th:text="${user.city}"></td></tr>
+        <tr><td>Kod: </td><td th:text="${user.code}"></td></tr>
+        <tr><td>E-mail: </td><td th:text="${user.mail}"></td></tr>
+        <tr><td>
+                    <form action="#" th:action="@{/delete}" method="get">
+                        <input type="hidden" th:value="${user.login}" th:name="userLogin"/>
+                        <input type="submit" value="Usuń konto" class="btn-link"/>
+
+                    </form>
+
+                </td>
+
+            </tr>
+
+        </table>
+     </div>
+
+<div th:include="layout :: footer"></div>
+</body>
+</html>

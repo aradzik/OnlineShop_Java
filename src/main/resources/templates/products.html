@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:include="layout :: head"></head>
+<style>
+    .btn-link {
+        border: none;
+        outline: none;
+        background: none;
+        cursor: pointer;
+        color: #0000EE;
+        padding: 0;
+        text-decoration: underline;
+        font-family: inherit;
+        font-size: inherit;
+    }
+</style>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<br><br>
+<img src="../images/banner.jpg" alt="Responsive image" width="100%">
+<div class="container">
+    <br><br>
+    <div><h1>Lista produktow:</h1></div>
+    <br>
+
+
+    <div th:if="${#lists.isEmpty(productlist)}">Brak produktów w bazie danych...</div>
+
+    <table th:if="${!#lists.isEmpty(productlist)}" th:each="product: ${productlist}">
+
+        <tr>
+            <th rowspan="3"><img th:src="@{'../images/'+${product.pictures}+'.jpg'}" width="200" height="200"></th>
+            <th style="width: 40em"> Nazwa: <p th:text="${product.namep}"></p></th>
+        </tr>
+        <tr>
+            <td style="width: 40em">Opis: <p th:text="${product.description}"></p></td>
+        </tr>
+        <tr>
+            <td style="width: 40em"> Cena: <p th:text="${product.price}"></p>
+                <div sec:authorize="isAuthenticated()">
+                    <form th:action="@{'/addBag?productid=' + ${product.productid}}" method="POST"
+                          th:object="${productAdd1}">
+                        <button type="submit">Dodaj do koszyka</button>
+                        <br>
+                    </form>
+                </div>
+                <div sec:authorize="!isAuthenticated()">
+                    Aby dodać do koszyka, <a class="btn btn-primary btn-lg" th:href="@{/login}">Zaloguj się &raquo;</a>
+                </div>
+
+            </td>
+            <hr>
+
+
+    </table>
+</div>
+<div th:include="layout :: footer"></div>
+</body>
+</html>

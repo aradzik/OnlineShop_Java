@@ -1,0 +1,74 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head"> <!-- określa fragment nagłówka naszej strony -->
+    <meta charset="utf-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Sklep z krzewami ozdobnymi">
+        <meta name="author" content="Aleksandra Radzik">
+
+        <title>Sklep z krzewami ozdobnymi</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css/business-frontpage.css" rel="stylesheet">
+
+</head>
+<body>
+<div th:fragment="navigationPanel" > <!--określa fragment nawigacji na naszej stronie -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/index}"><img src="../images/logo.png" alt="logo" width="50" height="50">Drzewka ozdobne</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/index}">Strona główna</a>
+                    </li>
+
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{/profile}">Wyświetl swoje konto</a>
+                    </li>
+                   <!-- <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{/users}">Wyświetl użytkowników</a>
+                    </li>-->
+                   <li class="nav-item" >
+                        <a class="nav-link" th:href="@{/products}">Wyświetl produkty</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{/bag}">Koszyk</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/register}">Zarejestruj się</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/login}">Zaloguj się</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{/logout}">Wyloguj się</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+</div>
+
+<div th:fragment="footer"> <!--określa fragment stopki naszej strony  -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Aleksandra Radzik, 2019</p>
+        </div>
+
+    </footer>
+
+</div>
+</body>
+</html>

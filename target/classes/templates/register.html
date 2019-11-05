@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="layout :: head"></head>
+<body>
+<style>
+    input.error { background-color: pink }
+</style>
+<div th:include="layout :: navigationPanel"></div>
+<br><br>
+<img src="../images/banner.jpg" alt="Responsive image" width="100%">
+<div class="container" style="text-align: center">
+    <br><br>
+<h1>Rejestracja:</h1><br>
+<form th:action="@{/register}"method="POST" th:object="${user}">
+    <table align="center">
+
+        <tr><td>Imię:</td>  <td><input type="text" th:field="*{name}"placeholder="Imię" th:errorClass="error" required /></td></tr>
+        <tr><td>Nazwisko:</td>  <td> <input type="text" th:field="*{surname}"placeholder="Nazwisko" th:errorClass="error" required /></td></tr>
+        <tr><td>Login: </td>  <td> <input type="text" th:field="*{login}"placeholder="Login" th:errorClass="error" required  /></td></tr>
+        <tr><td> Miasto:</td>  <td> <input type="text" th:field="*{city}"placeholder="Miasto"th:errorClass="error" required  /></td></tr>
+        <tr><td> Kod pocztowy:</td>  <td> <input type="text" th:field="*{code}"placeholder="Kod pocztowy"th:errorClass="error" required /></td></tr>
+        <tr><td> E-mail:</td>  <td> <input type="email" th:field="*{mail}"placeholder="E-mail"th:errorClass="error" required/></td></tr>
+        <tr><td> Hasło:</td>  <td> <input type="password" th:field="*{password}"placeholder="Hasło"th:errorClass="error" required /></td></tr>
+    </table>
+    <br><button type="submit">Zarejestruj się</button><br>
+</form>
+    <br><br>
+</div>
+<div th:include="layout :: footer"></div>
+</body>
+</html>

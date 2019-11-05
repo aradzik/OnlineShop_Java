@@ -1,0 +1,45 @@
+<!--  -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:include="layout :: head">
+</head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<br><br>
+<img src="../images/banner.jpg" alt="Responsive image" width="100%">
+<div class="container">
+<div class="row">
+<div class="col-md-8 mb-5">
+    <br><br>
+    <h1>Witamy</h1>
+    <hr>
+    <p>Krzewy są roślinami drzewiastymi, które mają wiele zastosowań i są ważne dla różnych celów krajobrazowych.
+        Wybierając spośród tysięcy gatunków krzewów ozdobnych, możemy mieć jednak duży problem, które
+        z nich wybrać do swojego ogrodu. </p>
+<div>
+    <h4>Nasze produkty:</h4>
+    <div th:if="${#lists.isEmpty(productlist)}">Brak produktów w bazie danych...</div>
+
+    <table th:if="${!#lists.isEmpty(productlist)}">
+
+        <tbody>
+        <tr th:each="product: ${productlist}">
+
+            <td><img th:src="@{'../images/'+${product.pictures}+'.jpg'}" width="200" height="200"></td>
+            <td><a th:text="${product.namep}"></a><br>
+                <a th:text="${product.description}"></a></td>
+
+
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+    <a class="btn btn-primary btn-lg" th:href="@{/products}">Więcej &raquo;</a>
+</div>
+</div>
+</div>
+<div th:include="layout :: footer"></div>
+</body>
+</html>
