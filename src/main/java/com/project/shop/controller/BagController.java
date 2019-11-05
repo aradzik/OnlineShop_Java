@@ -33,11 +33,7 @@ public class BagController {
 
 
     }
-//    @RequestMapping(value = "/bag", method = RequestMethod.GET)
-//    public String productsPage(Model m) {//dodanie do modelu listy wszystkich użytkowników
-//        m.addAttribute("baglist", dao.findAll());//zwrócenie nazwy widoku wyświetlającego wszystkich użytkowników
-//        return "bag";
-//    }
+
     @GetMapping("/delete1")
     public String deleteUser(@RequestParam int delProduct) {
         Bag toDelete = dao.findByProdbagid(delProduct);
